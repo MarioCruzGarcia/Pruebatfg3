@@ -1,0 +1,14 @@
+<h3>Eventos</h3>
+<div class="container">
+    <div class="row custom-row">
+        <div class="col-md-4 custom-col" *ngFor="let evento of eventos">
+            <div class="card mb-4 custom-card">
+                <img src={{evento.imagen}} class="card-img-top custom-img" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ evento.nombre }}</h5>
+                    <p class="card-text">{{evento.localizacion}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

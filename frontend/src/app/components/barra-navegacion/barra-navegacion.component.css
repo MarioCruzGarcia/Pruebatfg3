@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Serif+Display:ital@0;1&family=Teko:wght@300&display=swap');
+
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 20px;
+    margin-top: 10px;
+
+}
+
+.logo{
+    margin-left: 10vh;
+    height: 100px;
+    width: 100px;
+}
+
+div ul li{
+    list-style: none;
+    margin-left: 40px;
+}
+
+.custom-navlink{
+    font-family: "DM Serif Display", serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: large;
+}
+
+.custom-dropdown{
+    text-decoration: none;
+    color: black;
+    font-size: 25px;
+    padding-top: 20px;
+    padding-right: 50px;
+}
+
+.custom-item{
+    margin-left: -20px;
+}
+

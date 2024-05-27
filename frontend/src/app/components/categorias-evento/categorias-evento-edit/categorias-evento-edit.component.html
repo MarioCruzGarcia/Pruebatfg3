@@ -1,0 +1,12 @@
+<form [formGroup]="formularioCategoriaEdit" (ngSubmit)="updateCategoria()">
+    <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" formControlName="nombre" class="form-control">
+        <div *ngIf="formularioCategoriaEdit.get('nombre')?.invalid && formularioCategoriaEdit.get('nombre')?.touched" class="text-danger">
+            <div *ngIf="formularioCategoriaEdit.get('nombre')?.errors?.['required']">Nombre es requerido.</div>
+            <div *ngIf="formularioCategoriaEdit.get('nombre')?.errors?.['maxlength']">Nombre no puede tener más de 50 caracteres.</div>
+            <div *ngIf="formularioCategoriaEdit.get('nombre')?.errors?.['pattern']">Nombre solo puede contener letras y espacios.</div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-dark btn-sm mt-4">Actualizar</button>
+</form>

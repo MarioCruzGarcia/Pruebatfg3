@@ -1,0 +1,38 @@
+<button class="btn btn-primary mb-4" (click)="mostrarFormulario()">Agregar Categoria</button>
+
+<div *ngIf="mostrarForm">
+    <form [formGroup]="formularioCategoriasCreate" (ngSubmit)="insertarDatos()">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" formControlName="nombre" class="form-control">
+            <div *ngIf="formularioCategoriasCreate.get('nombre')?.invalid && formularioCategoriasCreate.get('nombre')?.touched" class="text-danger">
+                <div *ngIf="formularioCategoriasCreate.get('nombre')?.errors?.['required']">Nombre es requerido.</div>
+                <div *ngIf="formularioCategoriasCreate.get('nombre')?.errors?.['maxlength']">Nombre no puede tener más de 50 caracteres.</div>
+                <div *ngIf="formularioCategoriasCreate.get('nombre')?.errors?.['pattern']">Nombre solo puede contener letras y espacios.</div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-dark btn-sm mt-4">Crear</button>
+    </form>
+    
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th> 
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let categoria of categorias">
+            <td>{{categoria.id}}</td>
+            <td>{{ categoria.nombre }}</td>
+            <td><a class="btn btn-warning" href="editCategoria/{{ categoria.id }}">Editar</a>
+                <button class="btn btn-danger" (click)="deleteCategoriasEvento(categoria.id)">Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

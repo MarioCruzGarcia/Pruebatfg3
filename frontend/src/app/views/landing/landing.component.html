@@ -1,0 +1,29 @@
+<h3>Planes y eventos de ocio</h3>
+<div class="container">
+    <div class="row custom-row">
+        <div class="col-md-4 custom-col" *ngFor="let evento of eventos">
+            <div class="card mb-4 custom-card">
+                <img src={{evento.imagen}} class="card-img-top custom-img" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ evento.nombre }}</h5>
+                    <p class="card-text">{{evento.localizacion}}</p>
+                    <a [routerLink]="'/evento/' + evento.id" class="btn btn-primary custom-button">Ver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row custom-row">
+        <div class="col-md-4 custom-col" *ngFor="let espacio of espacios">
+            <div class="card mb-4 custom-card">
+                <img src={{espacio.imagen}} class="card-img-top custom-img" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ espacio.nombre }}</h5>
+                    <p class="card-text">{{espacio.localizacion}}</p>
+                    <a [routerLink]="'/espacio/' + espacio.id" class="btn btn-primary custom-button">Ver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
