@@ -1,8 +1,10 @@
 import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http'; // Importa HttpClient
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { MyJwtPayload } from '../../_interfaces/MyJwtPayload';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +31,7 @@ export class LoginComponent implements OnInit {
       correo: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z]).{8,}$/)]],
       terms: [false, Validators.requiredTrue],
-      tipoUsuario: ['', Validators.required] // Agrega este campo para el tipo de usuario
+      tipoUsuario: ['', Validators.required] 
     });
   }
 
@@ -52,9 +54,7 @@ export class LoginComponent implements OnInit {
           if (this.data.status === 1) {
             this.token = this.data.data.token;
             localStorage.setItem('token', this.token);
-            this.toastr.success(JSON.stringify(this.data.message), JSON.stringify(this.data.code));
-            this.router.navigate(['/']);
-            this.loginForm.reset();
+            
           } else if (this.data.status === 0) {
             this.toastr.error(JSON.stringify(this.data.message), JSON.stringify(this.data.code), {
               timeOut: 2000,
@@ -64,8 +64,9 @@ export class LoginComponent implements OnInit {
           console.log('Respuesta del servidor:', res);
           // Maneja la respuesta del servidor aquí
           if (this.data.status === 1) {
-            // Acciones después del login exitoso, por ejemplo, redirigir al usuario
-          }
+            this.toastr.success(JSON.stringify(this.data.message), JSON.stringify(this.data.code));
+            this.router.navigate(['/']);
+            this.loginForm.reset();          }
         }, (error: any) => {
           console.error('Error en la solicitud HTTP:', error);
         });

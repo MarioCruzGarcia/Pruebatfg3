@@ -29,7 +29,9 @@ import { AuthGuard2 } from './Auth/auth2.guard';
 import { CalendarioComponent } from './views/calendario/calendario.component';
 
 // , canActivate: [AuthGuard] Propiedad a añadir en los casos que el usuario quiera entrar algun sitio
-//  Todavia no implementado ya que quiero que me entre a todo 
+// sino ha iniciado sesion no entra
+// AuthGuard2: en el caso de que sea rol_id = 1 [ADMIN], entras sino te lleva al landing
+
 
 const appRoutes : Routes = [
     {path: '', component: LandingComponent},
@@ -46,7 +48,7 @@ const appRoutes : Routes = [
     {path: 'espaciosCRUD', component: EspaciosComponent, canActivate: [AuthGuard2]},
     {path: 'comentariosCRUD', component: ComentariosComponent, canActivate: [AuthGuard2]},
     {path: 'login', component: LoginComponent},
-    {path: 'calendario', component: CalendarioComponent},
+    {path: 'calendario', component: CalendarioComponent, canActivate: [AuthGuard]},
     //Ruta comodin
     {path: '**', redirectTo: '' }
 ]

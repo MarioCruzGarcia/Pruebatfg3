@@ -92,12 +92,10 @@ export class UsersComponent implements OnInit {
       const value: string = control.value || '';
       // Comprobamos si la password contiene al menos un número
       const hasNumber = /\d/.test(value); 
-      // Comprobamos si la password contiene al menos un carácter especial
-      const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(value); 
   
       // Si la password no contiene al menos un número o no contiene al menos un carácter especial,
       // devolvemos un objeto de errores con la clave 'invalidPassword' establecida en true
-      if (!hasNumber || !hasSpecial) {
+      if (!hasNumber) {
         return { 'invalidPassword': true };
       }
       // Si la password pasa ambas comprobaciones, devolvemos null, indicando que la validación fue exitosa

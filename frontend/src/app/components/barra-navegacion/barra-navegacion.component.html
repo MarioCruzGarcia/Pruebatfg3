@@ -24,16 +24,20 @@
                         <a class="nav-link active custom-navlink" [routerLink]="['/']">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link custom-navlink" [routerLink]="['/eventos']" routerLinkActive="router-link-active">Eventos</a>
+                        <a class="nav-link custom-navlink" [routerLink]="['/eventos']"
+                            routerLinkActive="router-link-active">Eventos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link custom-navlink" [routerLink]="['/espacios']" routerLinkActive="router-link-active">Espacios</a>
+                        <a class="nav-link custom-navlink" [routerLink]="['/espacios']"
+                            routerLinkActive="router-link-active">Espacios</a>
                     </li>
                     <li *ngIf="usersService.isLogged()" class="nav-item">
-                        <a class="nav-link custom-navlink" [routerLink]="['/admin']" routerLinkActive="router-link-active">Admin</a>
+                        <a class="nav-link custom-navlink" [routerLink]="['/calendario']"
+                            routerLinkActive="router-link-active">Calendario</a>
                     </li>
-                    <li *ngIf="usersService.isLogged()" class="nav-item">
-                        <a class="nav-link custom-navlink" [routerLink]="['/calendario']" routerLinkActive="router-link-active">Calendario</a>
+                    <li *ngIf="usersService.isLogged() && usersService.esAdmin()" class="nav-item">
+                        <a class="nav-link custom-navlink" [routerLink]="['/admin']"
+                            routerLinkActive="router-link-active">Admin</a>
                     </li>
                 </ul>
                 <div class="btn-group dropstart custom-dropdown">
@@ -41,10 +45,14 @@
                         <i class="fas fa-user"></i>
                     </button>
                     <ul class="dropdown-menu">
-                        <li *ngIf="!usersService.isLogged()"><a class="dropdown-item custom-item" [routerLink]="['/login']" routerLinkActive="router-link-active">Iniciar Sesion</a></li>
-                        <li *ngIf="usersService.isLogged()" (click)="logout()"><a class="dropdown-item custom-item" [routerLink]="['/login']" routerLinkActive="router-link-active"><i class="fa-solid fa-person-walking-arrow-right"></i> Salir</a></li>
+                        <li *ngIf="!usersService.isLogged()"><a class="dropdown-item custom-item"
+                                [routerLink]="['/login']" routerLinkActive="router-link-active">Iniciar Sesión</a></li>
+                        <li *ngIf="usersService.isLogged()" (click)="logout()"><a class="dropdown-item custom-item"
+                                [routerLink]="['/login']" routerLinkActive="router-link-active"><i
+                                    class="fa-solid fa-person-walking-arrow-right"></i> Salir</a></li>
                     </ul>
                 </div>
+                
             </div>
         </div>
     </nav>

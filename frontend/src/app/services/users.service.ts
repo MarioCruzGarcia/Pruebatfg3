@@ -24,4 +24,16 @@ export class UsersService {
         return false;
     }
   }
+
+  esAdmin() : boolean{
+    this.token = localStorage.getItem('token');
+    const decoded: MyJwtPayload = jwtDecode(this.token);
+    if (decoded.rol_id == 1) {
+        return true;
+    } else if (decoded.rol_id != 1) {
+      return false;
+    } else {
+      return false;
+    }
+  }
 }
