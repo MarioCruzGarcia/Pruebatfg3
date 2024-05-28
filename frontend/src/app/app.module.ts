@@ -26,6 +26,7 @@ import { ServiceLocator } from './service-locator';
 import { AuthGuard } from './Auth/auth.guard';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuard2 } from './Auth/auth2.guard';
+import { CalendarioComponent } from './views/calendario/calendario.component';
 
 // , canActivate: [AuthGuard] Propiedad a añadir en los casos que el usuario quiera entrar algun sitio
 //  Todavia no implementado ya que quiero que me entre a todo 
@@ -45,6 +46,7 @@ const appRoutes : Routes = [
     {path: 'espaciosCRUD', component: EspaciosComponent, canActivate: [AuthGuard2]},
     {path: 'comentariosCRUD', component: ComentariosComponent, canActivate: [AuthGuard2]},
     {path: 'login', component: LoginComponent},
+    {path: 'calendario', component: CalendarioComponent},
     //Ruta comodin
     {path: '**', redirectTo: '' }
 ]

@@ -32,6 +32,9 @@
                     <li *ngIf="usersService.isLogged()" class="nav-item">
                         <a class="nav-link custom-navlink" [routerLink]="['/admin']" routerLinkActive="router-link-active">Admin</a>
                     </li>
+                    <li *ngIf="usersService.isLogged()" class="nav-item">
+                        <a class="nav-link custom-navlink" [routerLink]="['/calendario']" routerLinkActive="router-link-active">Calendario</a>
+                    </li>
                 </ul>
                 <div class="btn-group dropstart custom-dropdown">
                     <button type="button" class="btn dropdown" data-bs-toggle="dropdown">

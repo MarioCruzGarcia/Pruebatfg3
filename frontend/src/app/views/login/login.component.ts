@@ -74,14 +74,14 @@ export class LoginComponent implements OnInit {
   onRegisterSubmit() {
     if (this.registerForm.valid) {
       console.log('Register Data:', this.registerForm.value);
-
+  
       let tipoUsuario;
       if (this.registerForm.value.tipoUsuario === 'organizador') {
         tipoUsuario = 2; // Si el usuario selecciona 'organizador'
       } else {
         tipoUsuario = 3; // Si el usuario selecciona 'participante'
       }
-
+  
       // Crear un nuevo usuario con los datos del formulario
       const nuevoUser = {
         nombre: this.registerForm.value.nombre,
@@ -89,14 +89,24 @@ export class LoginComponent implements OnInit {
         password: this.registerForm.value.password,
         rol_id: tipoUsuario
       };
-
+  
       // Hacer la solicitud HTTP POST usando HttpClient
       this.httpClient.post('http://127.0.0.1:8000/api/register', nuevoUser)
         .subscribe((res: any) => {
           this.data = res;
+          if (this.data.status === 1) {
+            this.token = this.data.data.token;
+            localStorage.setItem('token', this.token);
+            this.toastr.success(JSON.stringify(this.data.message), JSON.stringify(this.data.code));
+            this.router.navigate(['/']);
+          } else if (this.data.status === 0) {
+            this.toastr.error(JSON.stringify(this.data.message), JSON.stringify(this.data.code), {
+              timeOut: 3000, 
+              progressBar: true
+            });
+          }
           console.log('Respuesta del servidor:', res);
-          // Puedes hacer cualquier otra acción aquí después de recibir la respuesta
-        }, error => {
+        }, (error: any) => {
           console.error('Error en la solicitud HTTP:', error);
         });
     }

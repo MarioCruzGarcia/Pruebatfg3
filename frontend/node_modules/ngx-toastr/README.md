@@ -6,6 +6,9 @@
   <a href="https://www.npmjs.org/package/ngx-toastr">
     <img src="https://badge.fury.io/js/ngx-toastr.svg" alt="npm">
   </a>
+  <a href="https://circleci.com/gh/scttcper/ngx-toastr">
+    <img src="https://circleci.com/gh/scttcper/ngx-toastr.svg?style=svg" alt="circleci">
+  </a>
   <a href="https://codecov.io/github/scttcper/ngx-toastr">
     <img src="https://img.shields.io/codecov/c/github/scttcper/ngx-toastr.svg" alt="codecov">
   </a>
@@ -32,12 +35,11 @@ Latest version available for each version of Angular
 
 | ngx-toastr | Angular     |
 | ---------- | ----------- |
+| 11.3.3     | 8.x         |
+| 12.1.0     | 9.x         |
 | 13.2.1     | 10.x 11.x   |
 | 14.3.0     | 12.x 13.x   |
-| 15.2.2     | 14.x.       |
-| 16.2.0     | 15.x        |
-| 17.0.2     | 16.x        |
-| current    | >= 17.x     |
+| current    | >= 14.x     |
 
 ## Install
 
@@ -65,21 +67,18 @@ Don't want to use `@angular/animations`? See
 
 ```scss
 // regular style toast
-@import 'ngx-toastr/toastr';
+@import '~ngx-toastr/toastr';
 
 // bootstrap style toast
 // or import a bootstrap 4 alert styled design (SASS ONLY)
 // should be after your bootstrap imports, it uses bs4 variables, mixins, functions
-@import 'ngx-toastr/toastr-bs4-alert';
+@import '~ngx-toastr/toastr-bs4-alert';
 
 // if you'd like to use it without importing all of bootstrap it requires
-@import 'bootstrap/scss/functions';
-@import 'bootstrap/scss/variables';
-@import 'bootstrap/scss/mixins';
-// bootstrap 4
-@import 'ngx-toastr/toastr-bs4-alert';
-// boostrap 5
-@import 'ngx-toastr/toastr-bs5-alert';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~ngx-toastr/toastr-bs4-alert';
 ```
 
 - If you are using angular-cli you can add it to your angular.json
@@ -91,9 +90,7 @@ Don't want to use `@angular/animations`? See
 ]
 ```
 
-**step 2:** add `ToastrModule` to app `NgModule`, or `provideToastr` to providers, make sure you have `BrowserAnimationsModule` (or `provideAnimations`) as well.
-
-- Module based
+**step 2:** add ToastrModule to app NgModule, make sure you have BrowserAnimationsModule as well
 
 ```typescript
 import { CommonModule } from '@angular/common';
@@ -111,22 +108,6 @@ import { ToastrModule } from 'ngx-toastr';
   declarations: [App],
 })
 class MainModule {}
-```
-
-- Standalone
-
-```typescript
-import { AppComponent } from './src/app.component';
-import { provideAnimations } from '@angular/platform-browser/animations';
-
-import { provideToastr } from 'ngx-toastr';
-
-bootstrapApplication(AppComponent, {
-  providers: [
-    provideAnimations(), // required animations providers
-    provideToastr(), // Toastr providers
-  ]
-});
 ```
 
 ## Use
@@ -165,10 +146,10 @@ Passed to `ToastrService.success/error/warning/info/show()`
 | newestOnTop       | boolean                        | true                           | New toast placement                               |
 | progressBar       | boolean                        | false                          | Show progress bar                                 |
 | progressAnimation | `'decreasing' \| 'increasing'` | 'decreasing'                   | Changes the animation of the progress bar.        |
-| toastClass        | string                         | 'ngx-toastr'                   | CSS class(es) for toast                           |
-| positionClass     | string                         | 'toast-top-right'              | CSS class(es) for toast container                 |
-| titleClass        | string                         | 'toast-title'                  | CSS class(es) for inside toast on title           |
-| messageClass      | string                         | 'toast-message'                | CSS class(es) for inside toast on message         |
+| toastClass        | string                         | 'ngx-toastr'                   | Class on toast                                    |
+| positionClass     | string                         | 'toast-top-right'              | Class on toast container                          |
+| titleClass        | string                         | 'toast-title'                  | Class inside toast on title                       |
+| messageClass      | string                         | 'toast-message'                | Class inside toast on message                     |
 | tapToDismiss      | boolean                        | true                           | Close on click                                    |
 | onActivateTick    | boolean                        | false                          | Fires `changeDetectorRef.detectChanges()` when activated. Helps show toast from asynchronous events outside of Angular's change detection |
 
@@ -212,9 +193,7 @@ iconClasses = {
 
 #### Setting Global Options
 
-Pass values to `ToastrModule.forRoot()` or `provideToastr()` to set global options.
-
-- Module based
+Pass values to `ToastrModule.forRoot()`
 
 ```typescript
 // root app NgModule
@@ -226,26 +205,6 @@ imports: [
   }),
 ],
 ```
-
-- Standalone
-
-```typescript
-import { AppComponent } from './src/app.component';
-import { provideAnimations } from '@angular/platform-browser/animations';
-
-import { provideToastr } from 'ngx-toastr';
-
-bootstrapApplication(AppComponent, {
-  providers: [
-    provideToastr({
-      timeOut: 10000,
-      positionClass: 'toast-bottom-right',
-      preventDuplicates: true,
-    }), 
-  ]
-});
-```
-
 
 ### Toastr Service methods return:
 
@@ -422,30 +381,25 @@ ngOnInit() {
 ```
 
 2.  Change default icons (check, warning sign, etc)\
-    Overwrite the css background-image: https://github.com/scttcper/ngx-toastr/blob/master/src/lib/toastr.css.
-3.  How do I use this in an ErrorHandler?\
-    See: https://github.com/scttcper/ngx-toastr/issues/179.
-4.  How can I translate messages?\
-    See: https://github.com/scttcper/ngx-toastr/issues/201.
+    Overwrite the css background-image https://github.com/scttcper/ngx-toastr/blob/master/src/lib/toastr.css
+3.  How do I use this in an ErrorHandler? See:
+    https://github.com/scttcper/ngx-toastr/issues/179
+4.  How can I translate messages See:
+    https://github.com/scttcper/ngx-toastr/issues/201
 5.  How to handle toastr click/tap action?
-    ```ts
-    showToaster() {
-      this.toastr.success('Hello world!', 'Toastr fun!')
-        .onTap
-        .pipe(take(1))
-        .subscribe(() => this.toasterClickedHandler());
-    }
 
-    toasterClickedHandler() {
-      console.log('Toastr clicked');
-    }
-    ```
-6. How to customize styling without overridding defaults?\
-    Add multiple CSS classes separated by a space:
-    ```ts
-    toastClass: 'yourclass ngx-toastr'
-    ```
-    See: https://github.com/scttcper/ngx-toastr/issues/594.
+```ts
+showToaster() {
+  this.toastr.success('Hello world!', 'Toastr fun!')
+    .onTap
+    .pipe(take(1))
+    .subscribe(() => this.toasterClickedHandler());
+}
+
+toasterClickedHandler() {
+  console.log('Toastr clicked');
+}
+```
 
 ## Previous Works
 
