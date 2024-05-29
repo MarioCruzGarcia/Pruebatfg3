@@ -27,6 +27,7 @@ import { AuthGuard } from './Auth/auth.guard';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuard2 } from './Auth/auth2.guard';
 import { CalendarioComponent } from './views/calendario/calendario.component';
+import { CreacionComponent } from './views/creacion/creacion.component';
 
 // , canActivate: [AuthGuard] Propiedad a añadir en los casos que el usuario quiera entrar algun sitio
 // sino ha iniciado sesion no entra
@@ -49,6 +50,7 @@ const appRoutes : Routes = [
     {path: 'comentariosCRUD', component: ComentariosComponent, canActivate: [AuthGuard2]},
     {path: 'login', component: LoginComponent},
     {path: 'calendario', component: CalendarioComponent, canActivate: [AuthGuard]},
+    {path: 'crear', component: CreacionComponent},
     //Ruta comodin
     {path: '**', redirectTo: '' }
 ]

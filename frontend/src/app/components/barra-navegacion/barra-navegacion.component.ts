@@ -12,9 +12,6 @@ import { Router } from '@angular/router';
 })
 export class BarraNavegacionComponent implements OnInit {
 
-  token: any;
-  userData: any;
-
   usersService = inject(UsersService);
   
   constructor(private router: Router) { }
