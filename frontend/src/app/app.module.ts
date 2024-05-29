@@ -27,6 +27,8 @@ import { AuthGuard } from './Auth/auth.guard';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuard2 } from './Auth/auth2.guard';
 import { CalendarioComponent } from './views/calendario/calendario.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+
 
 // , canActivate: [AuthGuard] Propiedad a añadir en los casos que el usuario quiera entrar algun sitio
 // sino ha iniciado sesion no entra
@@ -67,7 +69,9 @@ const appRoutes : Routes = [
         LandingComponent,
         EventsComponent,
         SitesComponent,
-        LoginComponent
+        LoginComponent,
+        CalendarioComponent
+        
     ],
     imports: [
         BrowserModule,
@@ -82,7 +86,9 @@ const appRoutes : Routes = [
             progressBar: true,
             positionClass: 'toast-top-right',
             preventDuplicates: true
-        })
+        }),
+        FullCalendarModule 
+          
     ],
     providers: [],
     bootstrap: [AppComponent],
