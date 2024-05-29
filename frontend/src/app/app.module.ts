@@ -51,7 +51,6 @@ const appRoutes : Routes = [
     {path: 'comentariosCRUD', component: ComentariosComponent, canActivate: [AuthGuard2]},
     {path: 'login', component: LoginComponent},
     {path: 'calendario', component: CalendarioComponent, canActivate: [AuthGuard]},
-    {path: 'crear', component: CreacionComponent},
     //Ruta comodin
     {path: '**', redirectTo: '' }
 ]
