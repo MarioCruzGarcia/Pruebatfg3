@@ -1,7 +1,10 @@
-.custom-container1{
-    
+.custom-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }
 
-.custom-container2{
-
+.custom-container1{
+    width: 1000px;
 }

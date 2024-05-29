@@ -35,6 +35,10 @@
                         <a class="nav-link custom-navlink" [routerLink]="['/calendario']"
                             routerLinkActive="router-link-active">Calendario</a>
                     </li>
+                    <li *ngIf="usersService.isLogged() && usersService.esOrganizador()" class="nav-item">
+                        <a class="nav-link custom-navlink" [routerLink]="['/crear']"
+                            routerLinkActive="router-link-active">Creación</a>
+                    </li>
                     <li *ngIf="usersService.isLogged() && usersService.esAdmin()" class="nav-item">
                         <a class="nav-link custom-navlink" [routerLink]="['/admin']"
                             routerLinkActive="router-link-active">Admin</a>
