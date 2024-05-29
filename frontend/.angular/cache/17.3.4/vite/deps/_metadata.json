@@ -1,61 +1,61 @@
 {
-  "hash": "d588fe50",
-  "configHash": "a0f42a97",
+  "hash": "4891c2f9",
+  "configHash": "3bf6027d",
   "lockfileHash": "c31a4d89",
-  "browserHash": "d103ae7b",
+  "browserHash": "f75b543a",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "86c5db36",
+      "fileHash": "3fdc67b0",
       "needsInterop": false
     },
     "@angular/common/http": {
       "src": "../../../../../node_modules/@angular/common/fesm2022/http.mjs",
       "file": "@angular_common_http.js",
-      "fileHash": "0548c421",
+      "fileHash": "a4ce588d",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "9c5bc017",
+      "fileHash": "d86bebd4",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "595dd33c",
+      "fileHash": "93fa477b",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "6ff6e71c",
+      "fileHash": "70854edb",
       "needsInterop": false
     },
     "@angular/platform-browser/animations": {
       "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/animations.mjs",
       "file": "@angular_platform-browser_animations.js",
-      "fileHash": "52c55d58",
+      "fileHash": "a52aacd2",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "6b452044",
+      "fileHash": "acbb74f2",
       "needsInterop": false
     },
     "jwt-decode": {
       "src": "../../../../../node_modules/jwt-decode/build/esm/index.js",
       "file": "jwt-decode.js",
-      "fileHash": "7c2ddd81",
+      "fileHash": "2660b73c",
       "needsInterop": false
     },
     "ngx-toastr": {
       "src": "../../../../../node_modules/ngx-toastr/fesm2020/ngx-toastr.mjs",
       "file": "ngx-toastr.js",
-      "fileHash": "7b2ae29b",
+      "fileHash": "bb2ee1a0",
       "needsInterop": false
     }
   },
