@@ -29,6 +29,7 @@ import { AuthGuard2 } from './Auth/auth2.guard';
 import { CalendarioComponent } from './views/calendario/calendario.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { CreacionComponent } from './views/creacion/creacion.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 // , canActivate: [AuthGuard] Propiedad a añadir en los casos que el usuario quiera entrar algun sitio
@@ -72,8 +73,8 @@ const appRoutes : Routes = [
         EventsComponent,
         SitesComponent,
         LoginComponent,
-        CalendarioComponent
-        
+        CalendarioComponent,
+        FooterComponent
     ],
     imports: [
         BrowserModule,
