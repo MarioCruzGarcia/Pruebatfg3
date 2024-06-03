@@ -1,0 +1,25 @@
+.hidden {
+    display: none;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input,
+select,
+button {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#evento-descripcion{
+    width: 50vh; 
+    height: 100px;
+    resize: none;
+}

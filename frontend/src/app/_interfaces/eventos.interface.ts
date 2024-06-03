@@ -1,3 +1,5 @@
+import { Time } from "@angular/common";
+
 export interface EventosInterface {
     id: string,
     nombre: string,
@@ -5,8 +7,8 @@ export interface EventosInterface {
     aforo: number,
     descripcion: string, 
     fecha_hora: Date, 
-    duracion: string,
+    duracion: number,
     imagen: string,
-    organizador_id: number,
+    organizador: string,
     categoria: string
 }

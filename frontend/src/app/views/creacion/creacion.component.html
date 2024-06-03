@@ -1,1 +1,110 @@
-<p>creacion works!</p>
+<div class="container">
+    <h1>Crear Evento o Espacio</h1>
+    <div class="mb-3">
+        <label for="form-selection" class="form-label">Elige qué crear:</label>
+        <select id="form-selection" class="form-select" (change)="showForm($event)">
+            <option value="">Seleccionar...</option>
+            <option value="evento">Evento</option>
+            <option value="espacio">Espacio</option>
+        </select>
+    </div>
+</div>
+<!-- Formulario de Evento -->
+<form class="container needs-validation" *ngIf="selectedForm === 'evento'">
+    <h2>Crear Evento</h2>
+    <div class="row g-3">
+        <div class="col-md-4">
+            <label for="evento-nombre" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" id="evento-nombre" name="evento-nombre" [(ngModel)]="evento.nombre"
+                required>
+        </div>
+        <div class="col-md-4">
+            <label for="evento-localizacion" class="form-label">Localización:</label>
+            <input type="text" class="form-control" id="evento-localizacion" name="evento-localizacion"
+                [(ngModel)]="evento.localizacion" required>
+        </div>
+        <div class="col-md-4">
+            <label for="evento-aforo" class="form-label">Aforo:</label>
+            <input type="number" class="form-control" id="evento-aforo" name="evento-aforo" [(ngModel)]="evento.aforo"
+                required>
+        </div>
+        <div class="col-md-4">
+            <label for="categoria" class="form-label">Categoría:</label>
+            <select id="categoria" class="form-select" name="categoria" [(ngModel)]="evento.categoria">
+                <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="evento-fecha_hora" class="form-label">Fecha y Hora:</label>
+            <input type="datetime-local" class="form-control" id="evento-fecha_hora" name="evento-fecha_hora"
+                [(ngModel)]="evento.fecha_hora" required>
+        </div>
+        <div class="col-md-4">
+            <label for="evento-duracion" class="form-label">Duración en horas:</label>
+            <input type="number" class="form-control" id="evento-duracion" name="evento-duracion"
+                [(ngModel)]="evento.duracion" required>
+        </div>
+        <div class="col-md-12">
+            <label for="evento-descripcion" class="form-label">Descripción:</label>
+            <textarea id="evento-descripcion" class="form-control" rows="3" name="evento-descripcion"
+                [(ngModel)]="evento.descripcion"></textarea>
+        </div>
+        <div class="col-md-4">
+            <label for="espacio-imagen" class="form-label">Imagen:</label>
+            <input type="file" class="form-control" id="espacio-imagen" name="espacio-imagen" accept="image/png, image/jpeg" (change)="onFileSelected($event)">
+        </div>
+        <div class="col-md-4">
+            <label for="evento-organizador" class="form-label">Organizador:</label>
+            <input id="evento-organizador" class="form-control" name="evento-organizador"
+                [(ngModel)]="evento.organizador" value="{{ cogerNombre() }}" disabled>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary" (click)="submitEvento()">Enviar</button>
+        </div>
+    </div>
+</form>
+
+<!-- Formulario de Espacio -->
+<form class="container needs-validation" *ngIf="selectedForm === 'espacio'">
+    <h2>Crear Espacio</h2>
+    <div class="row g-3">
+        <div class="col-md-4">
+            <label for="espacio-nombre" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" id="espacio-nombre" name="espacio-nombre"
+                [(ngModel)]="espacio.nombre" required>
+        </div>
+        <div class="col-md-4">
+            <label for="espacio-localizacion" class="form-label">Localización:</label>
+            <input type="text" class="form-control" id="espacio-localizacion" name="espacio-localizacion"
+                [(ngModel)]="espacio.localizacion" required>
+        </div>
+        <div class="col-md-4">
+            <label for="espacio-aforo" class="form-label">Aforo:</label>
+            <input type="number" class="form-control" id="espacio-aforo" name="espacio-aforo"
+                [(ngModel)]="espacio.aforo" required>
+        </div>
+        <div class="col-md-4">
+            <label for="espacio-fecha" class="form-label">Fecha:</label>
+            <input type="date" class="form-control" id="espacio-fecha" name="espacio-fecha" [(ngModel)]="espacio.fecha"
+                required>
+        </div>
+        <div class="col-md-4">
+            <label for="espacio-contacto" class="form-label">Contacto:</label>
+            <input type="text" class="form-control" id="espacio-contacto" name="espacio-contacto"
+                [(ngModel)]="espacio.contacto" required>
+        </div>
+        <div class="col-md-4">
+            <label for="espacio-estado" class="form-label">Estado:</label>
+            <select id="espacio-estado" class="form-select" name="espacio-estado" [(ngModel)]="espacio.estado">
+                <option *ngFor="let estado of estados" [value]="estado.id">{{ estado.nombre }}</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="espacio-imagen" class="form-label">Imagen:</label>
+            <input type="file" class="form-control" id="espacio-imagen" name="espacio-imagen" accept="image/png, image/jpeg" (change)="onFileSelected($event)">
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary" (click)="submitEspacio()">Enviar</button>
+        </div>
+    </div>
+</form>

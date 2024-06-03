@@ -5,6 +5,6 @@ export interface EspaciosInterface {
     imagen: string,
     aforo: number,
     contacto: string, 
-    estado_id: string,
+    estado: string,
     fecha: Date, 
 }

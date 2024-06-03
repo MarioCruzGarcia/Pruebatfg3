@@ -74,7 +74,8 @@ const appRoutes : Routes = [
         SitesComponent,
         LoginComponent,
         CalendarioComponent,
-        FooterComponent
+        FooterComponent,
+        CreacionComponent
     ],
     imports: [
         BrowserModule,
