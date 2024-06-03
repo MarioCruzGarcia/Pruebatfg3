@@ -474,9 +474,9 @@ export {
 
 @angular/animations/fesm2022/animations.mjs:
   (**
-   * @license Angular v17.3.4
+   * @license Angular v17.3.10
    * (c) 2010-2024 Google LLC. https://angular.io/
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-27LDCO5G.js.map
+//# sourceMappingURL=chunk-AHZCJ7DW.js.map

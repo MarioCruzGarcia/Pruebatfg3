@@ -6,7 +6,7 @@ import {
   sequence,
   style,
   ɵPRE_STYLE
-} from "./chunk-27LDCO5G.js";
+} from "./chunk-AHZCJ7DW.js";
 import {
   BrowserModule,
   DomRendererFactory2
@@ -4148,7 +4148,7 @@ export {
 
 @angular/animations/fesm2022/browser.mjs:
   (**
-   * @license Angular v17.3.4
+   * @license Angular v17.3.10
    * (c) 2010-2024 Google LLC. https://angular.io/
    * License: MIT
    *)
