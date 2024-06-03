@@ -48,7 +48,7 @@ import {
   setRef,
   sortEventSegs,
   y
-} from "./chunk-LUIZHGJP.js";
+} from "./chunk-RY2GM7GM.js";
 import "./chunk-J4B6MK7R.js";
 
 // node_modules/@fullcalendar/daygrid/internal.js
