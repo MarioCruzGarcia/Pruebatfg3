@@ -9,6 +9,6 @@ export interface EventosInterface {
     fecha_hora: Date, 
     duracion: number,
     imagen: string,
-    organizador: string,
-    categoria: string
+    organizador_id: string,
+    categoria_id: string
 }

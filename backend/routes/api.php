@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -10,8 +9,6 @@ use App\Http\Controllers\ImagenesEventoController;
 use App\Http\Controllers\CategoriasEventoController;
 use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\ComentariosController;
-
-
 
 
 /*

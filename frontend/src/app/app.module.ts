@@ -30,6 +30,7 @@ import { CalendarioComponent } from './views/calendario/calendario.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { CreacionComponent } from './views/creacion/creacion.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CloudinaryModule } from '@cloudinary/ng';
 
 
 // , canActivate: [AuthGuard] Propiedad a añadir en los casos que el usuario quiera entrar algun sitio
@@ -91,8 +92,8 @@ const appRoutes : Routes = [
             positionClass: 'toast-top-right',
             preventDuplicates: true
         }),
-        FullCalendarModule 
-          
+        FullCalendarModule,
+        CloudinaryModule
     ],
     providers: [],
     bootstrap: [AppComponent],

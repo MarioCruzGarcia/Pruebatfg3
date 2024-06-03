@@ -30,7 +30,7 @@ public function addEvento(Request $request)
         'descripcion' => 'required|string',
         'fecha_hora' => 'required|date',
         'duracion' => 'required|integer',
-        'imagen' => 'required|integer',
+        'imagen' => 'required|string',
         'organizador_id' => 'required|integer',
         'categoria_id' => 'required|integer',
     ]);
@@ -68,7 +68,7 @@ public function updateEvento(Request $request, $id)
         'descripcion' => 'required|string',
         'fecha_hora' => 'required|date',
         'duracion' => 'required|integer',
-        'imagen' => 'required|integer',
+        'imagen' => 'required|string',
         'organizador_id' => 'required|integer',
         'categoria_id' => 'required|integer',
     ]);

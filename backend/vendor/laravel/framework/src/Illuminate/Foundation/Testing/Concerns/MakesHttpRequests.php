@@ -249,7 +249,7 @@ trait MakesHttpRequests
      */
     public function withCredentials()
     {
-        $this->withCredentials = true;
+        $this->withCredentials = false;
 
         return $this;
     }

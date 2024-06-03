@@ -4,7 +4,7 @@ export interface EspaciosInterface {
     localizacion: string,
     imagen: string,
     aforo: number,
-    contacto: string, 
-    estado: string,
+    contacto: string
+    estado_id: string,
     fecha: Date, 
 }

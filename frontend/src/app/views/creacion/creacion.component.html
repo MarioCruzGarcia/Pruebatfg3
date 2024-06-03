@@ -25,12 +25,12 @@
         </div>
         <div class="col-md-4">
             <label for="evento-aforo" class="form-label">Aforo:</label>
-            <input type="number" class="form-control" id="evento-aforo" name="evento-aforo" [(ngModel)]="evento.aforo"
+            <input type="number" class="form-control" min="5" id="evento-aforo" name="evento-aforo" [(ngModel)]="evento.aforo"
                 required>
         </div>
         <div class="col-md-4">
             <label for="categoria" class="form-label">Categoría:</label>
-            <select id="categoria" class="form-select" name="categoria" [(ngModel)]="evento.categoria">
+            <select id="categoria" class="form-select" name="categoria" [(ngModel)]="evento.categoria_id">
                 <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
             </select>
         </div>
@@ -41,7 +41,7 @@
         </div>
         <div class="col-md-4">
             <label for="evento-duracion" class="form-label">Duración en horas:</label>
-            <input type="number" class="form-control" id="evento-duracion" name="evento-duracion"
+            <input type="number" class="form-control" min="0" id="evento-duracion" name="evento-duracion"
                 [(ngModel)]="evento.duracion" required>
         </div>
         <div class="col-md-12">
@@ -56,10 +56,10 @@
         <div class="col-md-4">
             <label for="evento-organizador" class="form-label">Organizador:</label>
             <input id="evento-organizador" class="form-control" name="evento-organizador"
-                [(ngModel)]="evento.organizador" value="{{ cogerNombre() }}" disabled>
+                [(ngModel)]="evento.organizador_id" value="{{ cogerNombre() }}" disabled>
         </div>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary" (click)="submitEvento()">Enviar</button>
+            <button type="submit" class="btn btn-primary" (click)="submitEvento()" [disabled]="!isEventoFormValid()">Enviar</button>
         </div>
     </div>
 </form>
@@ -80,7 +80,7 @@
         </div>
         <div class="col-md-4">
             <label for="espacio-aforo" class="form-label">Aforo:</label>
-            <input type="number" class="form-control" id="espacio-aforo" name="espacio-aforo"
+            <input type="number" class="form-control" min="5" id="espacio-aforo" name="espacio-aforo"
                 [(ngModel)]="espacio.aforo" required>
         </div>
         <div class="col-md-4">
@@ -91,11 +91,11 @@
         <div class="col-md-4">
             <label for="espacio-contacto" class="form-label">Contacto:</label>
             <input type="text" class="form-control" id="espacio-contacto" name="espacio-contacto"
-                [(ngModel)]="espacio.contacto" required>
+                [(ngModel)]="espacio.contacto"  placeholder="contacto@ejemplo.com" required>
         </div>
         <div class="col-md-4">
             <label for="espacio-estado" class="form-label">Estado:</label>
-            <select id="espacio-estado" class="form-select" name="espacio-estado" [(ngModel)]="espacio.estado">
+            <select id="espacio-estado" class="form-select" name="espacio-estado" [(ngModel)]="espacio.estado_id">
                 <option *ngFor="let estado of estados" [value]="estado.id">{{ estado.nombre }}</option>
             </select>
         </div>
@@ -104,7 +104,7 @@
             <input type="file" class="form-control" id="espacio-imagen" name="espacio-imagen" accept="image/png, image/jpeg" (change)="onFileSelected($event)">
         </div>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary" (click)="submitEspacio()">Enviar</button>
+            <button type="submit" class="btn btn-primary" (click)="submitEspacio()" [disabled]="!isEspacioFormValid()">Enviar</button>
         </div>
     </div>
 </form>
