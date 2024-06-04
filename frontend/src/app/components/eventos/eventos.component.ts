@@ -15,6 +15,8 @@ export class EventosComponent implements OnInit {
   organizador: any = {};
   categoria: any = {};
 
+  files: File[] = [];
+
   formularioEventoCreate = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(50)]),
     localizacion: new FormControl('', [Validators.required, Validators.maxLength(100)]),
@@ -48,6 +50,23 @@ export class EventosComponent implements OnInit {
       }, error => {
         console.error('Error al obtener eventos:', error);
       });
+  }
+
+  previewImage(file: File) {
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      const preview = document.getElementById('preview') as HTMLDivElement;
+      preview.innerHTML = `<img src="${e.target.result}" alt="Preview" style="max-width: 100%; height: auto;">`;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.files.push(file);
+      this.previewImage(file);
+    }
   }
 
 

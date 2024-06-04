@@ -49,9 +49,10 @@
             <textarea id="evento-descripcion" class="form-control" rows="3" name="evento-descripcion"
                 [(ngModel)]="evento.descripcion"></textarea>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <label for="espacio-imagen" class="form-label">Imagen:</label>
             <input type="file" class="form-control" id="espacio-imagen" name="espacio-imagen" accept="image/png, image/jpeg" (change)="onFileSelected($event)">
+            <div class="styleImage" id="preview"></div>
         </div>
         <div class="col-md-4">
             <label for="evento-organizador" class="form-label">Organizador:</label>
@@ -99,9 +100,10 @@
                 <option *ngFor="let estado of estados" [value]="estado.id">{{ estado.nombre }}</option>
             </select>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-7">
             <label for="espacio-imagen" class="form-label">Imagen:</label>
             <input type="file" class="form-control" id="espacio-imagen" name="espacio-imagen" accept="image/png, image/jpeg" (change)="onFileSelected($event)">
+            <div class="styleImage" id="preview"></div>
         </div>
         <div class="col-12">
             <button type="submit" class="btn btn-primary" (click)="submitEspacio()" [disabled]="!isEspacioFormValid()">Enviar</button>

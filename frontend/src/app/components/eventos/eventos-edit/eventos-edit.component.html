@@ -1,1 +1,95 @@
-<p>eventos-edit works!</p>
+<form [formGroup]="formularioEventoUpdate" (ngSubmit)="updateDatos()">
+    <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" formControlName="nombre" class="form-control">
+        <div *ngIf="formularioEventoUpdate.get('nombre')?.invalid && formularioEventoUpdate.get('nombre')?.touched"
+            class="text-danger">
+            <div *ngIf="formularioEventoUpdate.get('nombre')?.errors?.['required']">Nombre es requerido.</div>
+            <div *ngIf="formularioEventoUpdate.get('nombre')?.errors?.['maxlength']">Nombre no puede tener más de 50
+                caracteres.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="localizacion">Localización</label>
+        <input type="text" formControlName="localizacion" class="form-control">
+        <div *ngIf="formularioEventoUpdate.get('localizacion')?.invalid && formularioEventoUpdate.get('localizacion')?.touched"
+            class="text-danger">
+            <div *ngIf="formularioEventoUpdate.get('localizacion')?.errors?.['required']">Localización es requerida.
+            </div>
+            <div *ngIf="formularioEventoUpdate.get('localizacion')?.errors?.['maxlength']">Localización no puede tener
+                más de 100 caracteres.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="aforo">Aforo</label>
+        <input type="number" formControlName="aforo" class="form-control">
+        <div *ngIf="formularioEventoUpdate.get('aforo')?.invalid && formularioEventoUpdate.get('aforo')?.touched"
+            class="text-danger">
+            <div *ngIf="formularioEventoUpdate.get('aforo')?.errors?.['required']">Aforo es requerido.</div>
+            <div *ngIf="formularioEventoUpdate.get('aforo')?.errors?.['min']">Aforo debe ser mayor o igual a 1.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="descripcion">Descripción</label>
+        <input type="text" formControlName="descripcion" class="form-control">
+        <div *ngIf="formularioEventoUpdate.get('descripcion')?.invalid && formularioEventoUpdate.get('descripcion')?.touched"
+            class="text-danger">
+            <div *ngIf="formularioEventoUpdate.get('descripcion')?.errors?.['required']">Descripción es requerida.</div>
+            <div *ngIf="formularioEventoUpdate.get('descripcion')?.errors?.['maxlength']">Descripción no puede tener más
+                de 500 caracteres.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="fecha_hora">Fecha y Hora</label>
+        <input type="datetime-local" formControlName="fecha_hora" class="form-control">
+        <div *ngIf="formularioEventoUpdate.get('fecha_hora')?.invalid && formularioEventoUpdate.get('fecha_hora')?.touched"
+            class="text-danger">
+            <div *ngIf="formularioEventoUpdate.get('fecha_hora')?.errors?.['required']">Fecha y Hora es requerida.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="duracion">Duración (en horas)</label>
+        <input type="number" formControlName="duracion" class="form-control">
+        <div *ngIf="formularioEventoUpdate.get('duracion')?.invalid && formularioEventoUpdate.get('duracion')?.touched"
+            class="text-danger">
+            <div *ngIf="formularioEventoUpdate.get('duracion')?.errors?.['required']">Duración es requerida.</div>
+            <div *ngIf="formularioEventoUpdate.get('duracion')?.errors?.['min']">Duración debe ser mayor o igual a 1.
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="organizador_id">Organizador</label>
+        <select formControlName="organizador_id" class="form-control">
+            <option *ngFor="let organizador of organizadores" [value]="organizador.id">{{ organizador.nombre }}</option>
+        </select>
+        <div *ngIf="formularioEventoUpdate.get('organizador_id')?.invalid && formularioEventoUpdate.get('organizador_id')?.touched"
+            class="text-danger">
+            <div *ngIf="formularioEventoUpdate.get('organizador_id')?.errors?.['required']">Organizador es requerido.
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="categoria_id">Categoría</label>
+        <select formControlName="categoria_id" class="form-control">
+            <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
+        </select>
+        <div *ngIf="formularioEventoUpdate.get('categoria_id')?.invalid && formularioEventoUpdate.get('categoria_id')?.touched"
+            class="text-danger">
+            <div *ngIf="formularioEventoUpdate.get('categoria_id')?.errors?.['required']">Categoría es requerida.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="imagen">Imagen</label>
+        <input type="file" class="form-control" id="espacio-imagen" name="espacio-imagen" accept="image/png, image/jpg"
+            (change)="onFileSelected($event)">
+        <div class="styleImage" id="preview">
+            <img *ngIf="imageUrl" [src]="imageUrl" alt="Vista previa de la imagen" class="img-thumbnail">
+        </div>
+        <div *ngIf="formularioEventoUpdate.get('imagen')?.invalid && formularioEventoUpdate.get('imagen')?.touched"
+            class="text-danger">
+            <div *ngIf="formularioEventoUpdate.get('imagen')?.errors?.['required']">Imagen es requerida.</div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-dark btn-sm mt-4">Actualizar</button>
+</form>

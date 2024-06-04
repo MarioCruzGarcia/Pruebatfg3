@@ -1,86 +1,92 @@
-<div class="form-box login" *ngIf="isLogin">
-    <h2>Iniciar Sesion</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
-        <div class="input-box">
-            <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-            <input type="email" formControlName="correo" required>
-            <label>Correo</label>
-            <div *ngIf="loginCorreo?.invalid && (loginCorreo?.touched || loginCorreo?.dirty)" class="error">
-                El correo es requerido y debe ser válido.
+<div class="todo">
+    <div class="form-box login" *ngIf="isLogin">
+        <h2>Iniciar Sesion</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <input type="email" formControlName="correo" required>
+                <label>Correo</label>
+                <div *ngIf="loginCorreo?.invalid && (loginCorreo?.touched || loginCorreo?.dirty)" class="error">
+                    El correo es requerido y debe ser válido.
+                </div>
             </div>
-        </div>
-        <div class="input-box">
-            <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-            <input type="password" formControlName="password" required>
-            <label>Contraseña</label>
-            <div *ngIf="loginPassword?.invalid && (loginPassword?.touched || loginPassword?.dirty)" class="error">
-                La contraseña es requerida.
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <input type="password" formControlName="password" required>
+                <label>Contraseña</label>
+                <div *ngIf="loginPassword?.invalid && (loginPassword?.touched || loginPassword?.dirty)" class="error">
+                    La contraseña es requerida.
+                </div>
             </div>
-        </div>
-        <br>
-        <div class="remember-forgot">
-            <label><input type="checkbox" formControlName="rememberMe"> Recuerdame</label>
-        </div>
-        <button type="submit" class="btn" [disabled]="loginForm.invalid">Iniciar Sesion</button>
-        <br>
-        <br>
-        <div class="login-resgistrarse">
-            <p>No tienes cuenta aún? <a class="register-link" (click)="toggleForm()">Registrarse</a></p>
-        </div>
-    </form>
-</div>
+            <br>
+            <div class="remember-forgot">
+                <label><input type="checkbox" formControlName="rememberMe"> Recuerdame</label>
+            </div>
+            <button type="submit" class="btn" [disabled]="loginForm.invalid">Iniciar Sesion</button>
+            <br>
+            <br>
+            <div class="login-resgistrarse">
+                <p>No tienes cuenta aún? <a class="register-link" (click)="toggleForm()">Registrarse</a></p>
+            </div>
+        </form>
+    </div>
 
-<div class="form-box register" *ngIf="!isLogin">
-    <h2>Registrarse</h2>
-    <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
-        <div class="input-box">
-            <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-            <input type="text" formControlName="nombre" required>
-            <label>Nombre</label>
-            <div *ngIf="registerNombre?.invalid && (registerNombre?.touched || registerNombre?.dirty)" class="error">
-                Nombre es requerido.
+    <div class="form-box register" *ngIf="!isLogin">
+        <h2>Registrarse</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <input type="text" formControlName="nombre" required>
+                <label>Nombre</label>
+                <div *ngIf="registerNombre?.invalid && (registerNombre?.touched || registerNombre?.dirty)"
+                    class="error">
+                    Nombre es requerido.
+                </div>
             </div>
-        </div>
-        <div class="input-box">
-            <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-            <input type="email" formControlName="correo" required>
-            <label>Correo</label>
-            <div *ngIf="registerCorreo?.invalid && (registerCorreo?.touched || registerCorreo?.dirty)" class="error">
-                Correo es requerido y debe ser válido.
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <input type="email" formControlName="correo" required>
+                <label>Correo</label>
+                <div *ngIf="registerCorreo?.invalid && (registerCorreo?.touched || registerCorreo?.dirty)"
+                    class="error">
+                    Correo es requerido y debe ser válido.
+                </div>
             </div>
-        </div>
-        <div class="input-box">
-            <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-            <input type="password" formControlName="password" required>
-            <label>Contraseña</label>
-            <div *ngIf="registerPassword?.invalid && (registerPassword?.touched || registerPassword?.dirty)" class="error">
-                Contraseña es requerida.
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <input type="password" formControlName="password" required>
+                <label>Contraseña</label>
+                <div *ngIf="registerPassword?.invalid && (registerPassword?.touched || registerPassword?.dirty)"
+                    class="error">
+                    Contraseña es requerida.
+                </div>
             </div>
-        </div>
-        <!-- Agrega el campo de selección para el tipo de usuario -->
-        <div class="input-box">
-            <select formControlName="tipoUsuario" required>
-                <option value="" disabled>Seleccione el tipo de usuario</option>
-                <option value="organizador">Organizador de eventos y espacios</option>
-                <option value="participante">Participante</option>
-            </select>
-            <div *ngIf="registerTipoUsuario?.invalid && (registerTipoUsuario?.touched || registerTipoUsuario?.dirty)" class="error">
-                Debe seleccionar el tipo de usuario.
+            <!-- Agrega el campo de selección para el tipo de usuario -->
+            <div class="input-box">
+                <select formControlName="tipoUsuario" required>
+                    <option value="" disabled>Seleccione el tipo de usuario</option>
+                    <option value="organizador">Organizador de eventos y espacios</option>
+                    <option value="participante">Participante</option>
+                </select>
+                <div *ngIf="registerTipoUsuario?.invalid && (registerTipoUsuario?.touched || registerTipoUsuario?.dirty)"
+                    class="error">
+                    Debe seleccionar el tipo de usuario.
+                </div>
             </div>
-        </div>
-        <br>
-        <div class="remember-forgot">
-            <label><input type="checkbox" formControlName="terms"> Estoy de acuerdo con los términos y condiciones</label>
-            <div *ngIf="registerTerms?.invalid && (registerTerms?.touched || registerTerms?.dirty)" class="error">
-                Debes aceptar los términos y condiciones.
+            <br>
+            <div class="remember-forgot">
+                <label><input type="checkbox" formControlName="terms"> Estoy de acuerdo con los términos y
+                    condiciones</label>
+                <div *ngIf="registerTerms?.invalid && (registerTerms?.touched || registerTerms?.dirty)" class="error">
+                    Debes aceptar los términos y condiciones.
+                </div>
             </div>
-        </div>
-        <button type="submit" class="btn" [disabled]="registerForm.invalid">Registrarse</button>
-        <br>
-        <br>
-        <div class="login-resgistrarse">
-            <p>Ya tienes cuenta? <a class="login-link" (click)="toggleForm()">Iniciar Sesión</a></p>
-        </div>
-    </form>
+            <button type="submit" class="btn" [disabled]="registerForm.invalid">Registrarse</button>
+            <br>
+            <br>
+            <div class="login-resgistrarse">
+                <p>Ya tienes cuenta? <a class="login-link" (click)="toggleForm()">Iniciar Sesión</a></p>
+            </div>
+        </form>
+    </div>
 </div>
-

@@ -30,7 +30,9 @@
         </div>    
         <div class="form-group">
             <label for="rol_id">Rol_id</label>
-            <input type="number" formControlName="rol_id" class="form-control">
+            <select class="form-control" id="rol" class="form-select" name="rol" formControlName="rol_id">
+                <option *ngFor="let rol of roles" [value]="rol.id">{{ rol.nombre }}</option>
+            </select>
             <div *ngIf="formularioUserCreate.get('rol_id')?.invalid && formularioUserCreate.get('rol_id')?.touched" class="text-danger">
                 <div *ngIf="formularioUserCreate.get('rol_id')?.errors?.['required']">Rol_id es requerido.</div>
                 <div *ngIf="formularioUserCreate.get('rol_id')?.errors?.['min']">Rol_id debe ser mayor o igual a 1.</div>
@@ -49,7 +51,6 @@
             <th scope="col">#</th>
             <th scope="col">Nombre</th> 
             <th scope="col">Correo</th>
-            <th scope="col">Contraseña</th>
             <th scope="col">Rol_id</th>
             <th scope="col">Acciones</th>
         </tr>
@@ -59,7 +60,6 @@
             <td>{{user.id}}</td>
             <td>{{ user.nombre }}</td>
             <td>{{ user.correo }}</td>
-            <td>*******</td>
             <td>{{ user.rol_id }}</td>
             <td><a class="btn btn-warning" href="editUser/{{ user.id }}" routerLinkActive="router-link-active" >Editar</a>
                 <button class="btn btn-danger" (click)="deleteUser(user.id)">Eliminar</button>

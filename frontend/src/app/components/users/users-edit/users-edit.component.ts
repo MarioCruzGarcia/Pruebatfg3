@@ -20,6 +20,11 @@ export class UsersEditComponent implements OnInit {
     rol_id: new FormControl('', [Validators.required, Validators.min(1), Validators.max(3)])
   });
 
+  roles: any[] = [
+    { id: '1', nombre: 'Admin' },
+    { id: '2', nombre: 'Organizador' },
+    { id: '3', nombre: 'Participante' }
+  ];
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {
     ServiceLocator.setHttpClient(http);

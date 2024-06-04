@@ -2,13 +2,15 @@
 <div class="container">
     <div class="row custom-row">
         <div class="col-md-4 custom-col" *ngFor="let espacio of espacios">
-            <div class="card mb-4 custom-card">
-                <img src={{espacio.imagen}} class="card-img-top custom-img" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{ espacio.nombre }}</h5>
-                    <p class="card-text">{{espacio.localizacion}}</p>
+            <a [routerLink]="['/espacio', espacio.id]" class="text-decoration-none">
+                <div class="card mb-4 custom-card">
+                    <img src={{espacio.imagen}} class="card-img-top custom-img" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ espacio.nombre }}</h5>
+                        <p class="card-text">{{espacio.localizacion}}</p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </div>

@@ -3,6 +3,10 @@
     width: 200px;
 }
 
+.styleImage{
+    width: 500px;
+}
+
 .table th, .table td {
     padding: 3rem; 
 }

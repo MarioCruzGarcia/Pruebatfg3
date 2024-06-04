@@ -31,6 +31,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { CreacionComponent } from './views/creacion/creacion.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CloudinaryModule } from '@cloudinary/ng';
+import { EventosEditComponent } from './components/eventos/eventos-edit/eventos-edit.component';
 
 
 // , canActivate: [AuthGuard] Propiedad a añadir en los casos que el usuario quiera entrar algun sitio
@@ -50,6 +51,7 @@ const appRoutes : Routes = [
     {path: 'categoriasCRUD', component: CategoriasEventoComponent, canActivate: [AuthGuard2]},
     {path: 'editCategoria/:id', component: CategoriasEventoEditComponent, canActivate: [AuthGuard2]},
     {path: 'eventosCRUD', component: EventosComponent, canActivate: [AuthGuard2]},
+    {path: 'editEvento/:id', component: EventosEditComponent, canActivate: [AuthGuard2]},
     {path: 'espaciosCRUD', component: EspaciosComponent, canActivate: [AuthGuard2]},
     {path: 'comentariosCRUD', component: ComentariosComponent, canActivate: [AuthGuard2]},
     {path: 'login', component: LoginComponent},
@@ -72,6 +74,7 @@ const appRoutes : Routes = [
         BarraNavegacionComponent,
         LandingComponent,
         EventsComponent,
+        EventosEditComponent,
         SitesComponent,
         LoginComponent,
         CalendarioComponent,

@@ -8,6 +8,9 @@ import { UploadService } from '../../services/upload.service';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ServiceLocator } from '../../service-locator';
+import { CategoriasEventoInterface } from '../../_interfaces/categorias-evento.interface';
+import { EstadoInterface } from '../../_interfaces/estado.interface';
 
 @Component({
   selector: 'app-creacion',
@@ -19,6 +22,8 @@ export class CreacionComponent {
   token: any;
   nombre: any;
   id: any;
+  categorias : CategoriasEventoInterface[] = [];  
+  estados : EstadoInterface[] = [];
 
   files: File[] = [];
 
@@ -27,20 +32,27 @@ export class CreacionComponent {
    * se puedan coger las opciones propuestas aqui
    */
 
-  categorias: any[] = [
-    { id: '1', nombre: 'Concierto' },
-    { id: '2', nombre: 'Conferencia' },
-    { id: '3', nombre: 'Exposición' },
-    { id: '4', nombre: 'Feria' },
-    { id: '5', nombre: 'Taller' }
-  ];
+  obtenerCategorias_evento() {
+    const httpClient = ServiceLocator.getHttpClient(); 
+    httpClient.get('http://127.0.0.1:8000/api/categorias_evento')
+      .subscribe((categorias_evento: any) => {
+        this.categorias = categorias_evento; 
+        console.log(this.categorias);
+      }, error => {
+        console.error('Error al obtener categorias_evento:', error);
+      });
+  }
 
-  estados: any[] = [
-    { id: '1', nombre: 'Disponible' },
-    { id: '2', nombre: 'No disponible' },
-    { id: '3', nombre: 'En Mantenimiento' },
-    { id: '4', nombre: 'Reservado' }
-  ];
+  obtenerEstados() {
+    const httpClient = ServiceLocator.getHttpClient(); 
+    httpClient.get('http://127.0.0.1:8000/api/estado')
+      .subscribe((estados: any) => {
+        this.estados = estados; 
+        console.log(this.categorias);
+      }, error => {
+        console.error('Error al obtener estados:', error);
+      });
+  }
 
   //_____________________CONSTRUCTOR Y NGONINIT
 
@@ -80,6 +92,8 @@ export class CreacionComponent {
   showForm(event: Event): void {
     const target = event.target as HTMLSelectElement;
     this.selectedForm = target.value;
+    this.obtenerCategorias_evento();
+    this.obtenerEstados();
   }
 
   /**
@@ -171,10 +185,27 @@ export class CreacionComponent {
       );
   }
 
+  /**
+   * Para poder cargar las imagenes debemos crear estos dos metodos que hacen referencia a lo que recibe el input
+   * y cuando contiene algo lo que hace es llamar el div con id preview para añadirle el contenido, 
+   * en esta caso una IMAGEN
+   * @param file 
+   */
+
+  previewImage(file: File) {
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      const preview = document.getElementById('preview') as HTMLDivElement;
+      preview.innerHTML = `<img src="${e.target.result}" alt="Preview" style="max-width: 100%; height: auto;">`;
+    };
+    reader.readAsDataURL(file);
+  }
+
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
       this.files.push(file);
+      this.previewImage(file);
     }
   }
 

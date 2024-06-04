@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UsersInterface } from '../../_interfaces/users.interface';
-import { Users } from './users';
+import { Users } from './users.model';
 import { ServiceLocator } from '../../service-locator';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
@@ -17,6 +17,13 @@ export class UsersComponent implements OnInit {
   }
   user = new Users();
   users: Users[] = [];
+  rol: any;
+
+  roles: any[] = [
+    { id: '1', nombre: 'Admin' },
+    { id: '2', nombre: 'Organizador' },
+    { id: '3', nombre: 'Participante' }
+  ];
 
   formularioUserCreate = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.pattern('[a-zA-Z ]*')]),
@@ -37,8 +44,17 @@ export class UsersComponent implements OnInit {
   obtenerUsuarios() {
     const httpClient = ServiceLocator.getHttpClient(); 
     httpClient.get('http://127.0.0.1:8000/api/users')
-      .subscribe((response: any) => {
-        this.users = response; 
+      .subscribe((response: any) => { 
+        this.users = response;
+        for (let i = 0; i < this.users.length; i++) {
+          if (this.users[i].rol_id == 1) {
+            this.users[i].rol_id = 'Admin';
+          }else if (this.users[i].rol_id == 2) {
+            this.users[i].rol_id = 'Organizador';
+          }else{
+            this.users[i].rol_id = 'Participante';
+          }
+        }
         console.log(this.users);
       }, error => {
         console.error('Error al obtener user:', error);
@@ -59,8 +75,8 @@ export class UsersComponent implements OnInit {
       httpClient.post('http://127.0.0.1:8000/api/addUser', nuevoUser)
         .subscribe((response: any) => {
           console.log('Usuario insertado correctamente:', response);
-          this.obtenerUsuarios();
-          // Reiniciar el formulario después de una inserción exitosa
+          this.obtenerUsuarios();    
+          this.mostrarForm = !this.mostrarForm;
           this.formularioUserCreate.reset();
         }, error => {
           console.error('Error al insertar usuario:', error);
