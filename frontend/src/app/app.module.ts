@@ -32,6 +32,8 @@ import { CreacionComponent } from './views/creacion/creacion.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CloudinaryModule } from '@cloudinary/ng';
 import { EventosEditComponent } from './components/eventos/eventos-edit/eventos-edit.component';
+import { EspaciosEditComponent } from './components/espacios/espacios-edit/espacios-edit.component';
+import { ComentsComponent } from './views/coments/coments.component';
 
 
 // , canActivate: [AuthGuard] Propiedad a añadir en los casos que el usuario quiera entrar algun sitio
@@ -53,6 +55,7 @@ const appRoutes : Routes = [
     {path: 'eventosCRUD', component: EventosComponent, canActivate: [AuthGuard2]},
     {path: 'editEvento/:id', component: EventosEditComponent, canActivate: [AuthGuard2]},
     {path: 'espaciosCRUD', component: EspaciosComponent, canActivate: [AuthGuard2]},
+    {path: 'editEspacio/:id', component: EspaciosEditComponent, canActivate: [AuthGuard2]},
     {path: 'comentariosCRUD', component: ComentariosComponent, canActivate: [AuthGuard2]},
     {path: 'login', component: LoginComponent},
     {path: 'calendario', component: CalendarioComponent, canActivate: [AuthGuard]},
@@ -67,14 +70,15 @@ const appRoutes : Routes = [
         UsersComponent,
         UsersEditComponent,
         EventosComponent,
+        EventosEditComponent,
         EspaciosComponent,
+        EspaciosEditComponent,
         ComentariosComponent,
         CategoriasEventoComponent,
         CategoriasEventoEditComponent,
         BarraNavegacionComponent,
         LandingComponent,
         EventsComponent,
-        EventosEditComponent,
         SitesComponent,
         LoginComponent,
         CalendarioComponent,

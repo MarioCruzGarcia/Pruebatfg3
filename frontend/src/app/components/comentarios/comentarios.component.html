@@ -1,1 +1,19 @@
-<p>comentarios works!</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Comentario</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Acciones</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let comentario of comentarios">
+            <td class="td">{{ comentario.id }}</td>
+            <td class="td">{{ comentario.comentario }}</td>
+            <td class="td">{{ comentario.fecha | date:'short' }}</td>
+            <td class="td">
+                <button class="btn btn-danger" (click)="deleteComentario(comentario.id)">Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,20 @@
+<div class="comments-section">
+    <hr style="margin-bottom: 50px; margin-top: 50px;">
+    <button class="btn btn-success custom-button" (click)="toggleForm()">+</button>
+    
+    <div *ngIf="formVisible" class="new-comment-form">
+        <form (ngSubmit)="addComentario()" style="margin-bottom: 20px;">
+            <div class="form-group">
+                <label for="comentario">Comentario</label><br>
+                <input id="comentario" [(ngModel)]="nuevoComentario.comentario" name="comentario" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style=" margin-top: 10px;">Comentar</button>
+        </form>
+    </div>
+
+    <div *ngFor="let comentario of comentariosConUsuarios" class="comment">
+        <h3><i class="fas fa-user"></i> {{ comentario.usuario }}</h3>
+        <p>{{ comentario.comentario }}</p>
+        <span style="float: right; margin-top: -6vh">{{ comentario.fecha }}</span>
+    </div>
+</div>

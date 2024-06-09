@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       correo: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z]).{8,}$/)]],
       terms: [false, Validators.requiredTrue],
-      tipoUsuario: ['', Validators.required] 
+      tipoUsuario: ['', Validators.required]
     });
   }
 
@@ -39,10 +39,15 @@ export class LoginComponent implements OnInit {
     // Elimina los elementos innecesarios en el ngOnInit
   }
 
+  //Ponemos y quitamos el formulario
   toggleForm() {
     this.isLogin = !this.isLogin;
   }
 
+
+  /**
+   * Hacemos la peticion post para que nos devulva el status y si es correcto se loguea
+   */
   onLoginSubmit() {
     if (this.loginForm.valid) {
       console.log('Login Data:', this.loginForm.value);
@@ -54,7 +59,7 @@ export class LoginComponent implements OnInit {
           if (this.data.status === 1) {
             this.token = this.data.data.token;
             localStorage.setItem('token', this.token);
-            
+
           } else if (this.data.status === 0) {
             this.toastr.error(JSON.stringify(this.data.message), JSON.stringify(this.data.code), {
               timeOut: 2000,
@@ -66,7 +71,8 @@ export class LoginComponent implements OnInit {
           if (this.data.status === 1) {
             this.toastr.success(JSON.stringify(this.data.message), JSON.stringify(this.data.code));
             this.router.navigate(['/']);
-            this.loginForm.reset();          }
+            this.loginForm.reset();
+          }
         }, (error: any) => {
           console.error('Error en la solicitud HTTP:', error);
         });

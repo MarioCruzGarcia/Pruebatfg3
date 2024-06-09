@@ -1,0 +1,22 @@
+.foto{
+    height: 100px;
+    width: 200px;
+}
+
+.styleImage{
+    width: 500px;
+}
+
+.table th, .table td {
+    padding: 3rem; 
+}
+
+.table .td {
+    padding: 1rem; 
+}
+
+.table{
+    margin-left: -300px;
+}
+
+

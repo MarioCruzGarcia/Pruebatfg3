@@ -1,16 +1,18 @@
 <div class="container">
     <div class="row custom-row">
-    <div class="col-md-6 custom-container1">
-        <img src="{{ eventData.imagen }}" alt="Imagen del evento" class="img-fluid">
-    </div>
-    <div class="col-md-6 custom-container2">
-        <h2>{{ eventData.nombre }}</h2>
-        <p><strong>Localización:</strong> {{ eventData.localizacion }}</p>
-        <p><strong>Aforo:</strong> {{ eventData.aforo }}</p>
-        <p><strong>Descripción:</strong> {{ eventData.descripcion }}</p>
-        <p><strong>Fecha y Hora:</strong> {{ eventData.fecha_hora }}</p>
-        <p><strong>Organizador:</strong> {{ organizador.nombre }}</p>
-        <p><strong>Categoría:</strong> {{ categoria.nombre }}</p>
-    </div>
+        <div class="col-md-12 custom-container1">
+            <img src="{{ eventData.imagen }}" alt="Imagen del evento" class="img-fluid">
+        </div>
+        <div class="col-md-12 custom-container2">
+            <h2>{{ eventData.nombre }}</h2>
+            <p><strong>Localización:</strong> {{ eventData.localizacion }}</p>
+            <p><strong>Aforo:</strong> {{ eventData.aforo }}</p>
+            <p><strong>Descripción:</strong> {{ eventData.descripcion }}</p>
+            <p><strong>Fecha y Hora:</strong> {{ eventData.fecha_hora }}</p>
+            <p><strong>Organizador:</strong> {{ organizador.nombre }}</p>
+            <p><strong>Categoría:</strong> {{ categoria.nombre }}</p>
+        </div>
     </div>
 </div>
+<app-coments></app-coments>
+

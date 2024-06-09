@@ -11,6 +11,12 @@ export class AuthGuard implements CanActivate {
 
     constructor(private router: Router) { }
 
+    /**
+     * En caso de existir token te deja entrar
+     * @param route 
+     * @param state 
+     * @returns 
+     */
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         this.token = localStorage.getItem('token');
         if (this.token) {

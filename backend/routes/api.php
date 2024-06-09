@@ -67,7 +67,6 @@ Route:: delete('/deleteEstado/{id}', [EstadoController::class, 'deleteEstado']);
 
 //COMENTARIOS
 Route::get('/comentarios', [ComentariosController::class, 'comentarios']);
-Route:: get ('/getComentarios/{id}', [ComentariosController::class, 'getComentarios']);
-Route:: post ('/addComentarios', [ComentariosController::class, 'addComentarios']);
-Route:: put ('/updateComentarios/{id}', [ComentariosController::class, 'updateComentarios']);
-Route:: delete('/deleteComentarios/{id}', [ComentariosController::class, 'deleteComentarios']);
+Route::get('/comentarios/evento/{eventoId}', [ComentariosController::class, 'comentariosPorEvento']);
+Route:: post ('/addComentario', [ComentariosController::class, 'addComentario']);
+Route:: delete('/deleteComentarios/{id}', [ComentariosController::class, 'deleteComentario']);

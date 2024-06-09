@@ -5,60 +5,82 @@
         <div class="form-group">
             <label for="nombre">Nombre</label>
             <input type="text" formControlName="nombre" class="form-control">
-            <div *ngIf="formularioEventoCreate.get('nombre')?.invalid && formularioEventoCreate.get('nombre')?.touched" class="text-danger">
+            <div *ngIf="formularioEventoCreate.get('nombre')?.invalid && formularioEventoCreate.get('nombre')?.touched"
+                class="text-danger">
                 <div *ngIf="formularioEventoCreate.get('nombre')?.errors?.['required']">Nombre es requerido.</div>
-                <div *ngIf="formularioEventoCreate.get('nombre')?.errors?.['maxlength']">Nombre no puede tener más de 50 caracteres.</div>
+                <div *ngIf="formularioEventoCreate.get('nombre')?.errors?.['maxlength']">Nombre no puede tener más de 50
+                    caracteres.</div>
             </div>
         </div>
         <div class="form-group">
             <label for="localizacion">Localización</label>
             <input type="text" formControlName="localizacion" class="form-control">
-            <div *ngIf="formularioEventoCreate.get('localizacion')?.invalid && formularioEventoCreate.get('localizacion')?.touched" class="text-danger">
-                <div *ngIf="formularioEventoCreate.get('localizacion')?.errors?.['required']">Localización es requerida.</div>
-                <div *ngIf="formularioEventoCreate.get('localizacion')?.errors?.['maxlength']">Localización no puede tener más de 100 caracteres.</div>
+            <div *ngIf="formularioEventoCreate.get('localizacion')?.invalid && formularioEventoCreate.get('localizacion')?.touched"
+                class="text-danger">
+                <div *ngIf="formularioEventoCreate.get('localizacion')?.errors?.['required']">Localización es requerida.
+                </div>
+                <div *ngIf="formularioEventoCreate.get('localizacion')?.errors?.['maxlength']">Localización no puede
+                    tener más de 100 caracteres.</div>
             </div>
         </div>
         <div class="form-group">
             <label for="aforo">Aforo</label>
             <input type="number" formControlName="aforo" class="form-control">
-            <div *ngIf="formularioEventoCreate.get('aforo')?.invalid && formularioEventoCreate.get('aforo')?.touched" class="text-danger">
+            <div *ngIf="formularioEventoCreate.get('aforo')?.invalid && formularioEventoCreate.get('aforo')?.touched"
+                class="text-danger">
                 <div *ngIf="formularioEventoCreate.get('aforo')?.errors?.['required']">Aforo es requerido.</div>
-                <div *ngIf="formularioEventoCreate.get('aforo')?.errors?.['min']">Aforo debe ser mayor o igual a 1.</div>
+                <div *ngIf="formularioEventoCreate.get('aforo')?.errors?.['min']">Aforo debe ser mayor o igual a 1.
+                </div>
             </div>
         </div>
         <div class="form-group">
             <label for="descripcion">Descripción</label>
             <input type="text" formControlName="descripcion" class="form-control">
-            <div *ngIf="formularioEventoCreate.get('descripcion')?.invalid && formularioEventoCreate.get('descripcion')?.touched" class="text-danger">
-                <div *ngIf="formularioEventoCreate.get('descripcion')?.errors?.['required']">Descripción es requerida.</div>
-                <div *ngIf="formularioEventoCreate.get('descripcion')?.errors?.['maxlength']">Descripción no puede tener más de 500 caracteres.</div>
+            <div *ngIf="formularioEventoCreate.get('descripcion')?.invalid && formularioEventoCreate.get('descripcion')?.touched"
+                class="text-danger">
+                <div *ngIf="formularioEventoCreate.get('descripcion')?.errors?.['required']">Descripción es requerida.
+                </div>
+                <div *ngIf="formularioEventoCreate.get('descripcion')?.errors?.['maxlength']">Descripción no puede tener
+                    más de 500 caracteres.</div>
             </div>
         </div>
         <div class="form-group">
             <label for="fecha_hora">Fecha y Hora</label>
             <input type="datetime-local" formControlName="fecha_hora" class="form-control">
-            <div *ngIf="formularioEventoCreate.get('fecha_hora')?.invalid && formularioEventoCreate.get('fecha_hora')?.touched" class="text-danger">
-                <div *ngIf="formularioEventoCreate.get('fecha_hora')?.errors?.['required']">Fecha y Hora es requerida.</div>
+            <div *ngIf="formularioEventoCreate.get('fecha_hora')?.invalid && formularioEventoCreate.get('fecha_hora')?.touched"
+                class="text-danger">
+                <div *ngIf="formularioEventoCreate.get('fecha_hora')?.errors?.['required']">Fecha y Hora es requerida.
+                </div>
             </div>
         </div>
         <div class="form-group">
             <label for="duracion">Duración</label>
-            <input type="text" formControlName="duracion" class="form-control">
-            <div *ngIf="formularioEventoCreate.get('duracion')?.invalid && formularioEventoCreate.get('duracion')?.touched" class="text-danger">
+            <input type="number" formControlName="duracion" class="form-control">
+            <div *ngIf="formularioEventoCreate.get('duracion')?.invalid && formularioEventoCreate.get('duracion')?.touched"
+                class="text-danger">
                 <div *ngIf="formularioEventoCreate.get('duracion')?.errors?.['required']">Duración es requerida.</div>
-                <div *ngIf="formularioEventoCreate.get('duracion')?.errors?.['maxlength']">Duración no puede tener más de 20 caracteres.</div>
+                <div *ngIf="formularioEventoCreate.get('duracion')?.errors?.['min']">Duración debe ser mayor o igual a1.</div>
             </div>
+        </div>
+        <div class="col-md-4">
+            <label for="categoria" class="form-label">Categoría:</label>
+            <select id="categoria" class="form-select" name="categoria" formControlName="categorias_id">
+                <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
+            </select>
         </div>
         <div class="form-group">
             <label for="imagen">Imagen</label>
-            <input type="file" class="form-control" id="espacio-imagen" name="espacio-imagen" accept="image/png, image/jpeg" (change)="onFileSelected($event)">
-            <div class="styleImage" id="preview"></div>
-            <div *ngIf="formularioEventoCreate.get('imagen')?.invalid && formularioEventoCreate.get('imagen')?.touched" class="text-danger">
+            <input type="file" class="form-control" id="espacio-imagen" name="espacio-imagen"
+                accept="image/png, image/jpg" (change)="onFileSelected($event)">
+            <div class="styleImage" id="preview">
+                <img *ngIf="imageUrl" [src]="imageUrl" alt="Vista previa de la imagen" class="img-thumbnail">
+            </div>
+            <div *ngIf="formularioEventoCreate.get('imagen')?.invalid && formularioEventoCreate.get('imagen')?.touched"
+                class="text-danger">
                 <div *ngIf="formularioEventoCreate.get('imagen')?.errors?.['required']">Imagen es requerida.</div>
-                <div *ngIf="formularioEventoCreate.get('imagen')?.errors?.['maxlength']">Imagen no puede tener más de 255 caracteres.</div>
             </div>
         </div>
-        <button type="submit" class="btn btn-dark btn-sm mt-4">Crear</button>
+        <button type="submit" class="btn btn-dark btn-sm mt-4" [disabled]="isImageUploading">Crear</button>
     </form>
 </div>
 
@@ -87,7 +109,8 @@
             <td class="td">{{ evento.duracion }}</td>
             <td class="td"><img src="{{ evento.imagen }}" class="foto"></td>
             <td class="td">
-                <a class="btn btn-warning" href="editEvento/{{ evento.id }}" routerLinkActive="router-link-active">Editar</a>
+                <a class="btn btn-warning" href="editEvento/{{ evento.id }}"
+                    routerLinkActive="router-link-active">Editar</a>
                 <button class="btn btn-danger" (click)="deleteEvento(evento.id)">Eliminar</button>
             </td>
         </tr>

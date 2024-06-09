@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ServiceLocator } from '../../../service-locator';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-eventos-edit',
@@ -15,6 +15,7 @@ export class EventosEditComponent implements OnInit {
   eventoData: any = {};
   organizadores: any[] = [];
   categorias: any[] = [];
+  
   formularioEventoUpdate = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(50)]),
     localizacion: new FormControl('', [Validators.required, Validators.maxLength(100)]),
@@ -28,6 +29,7 @@ export class EventosEditComponent implements OnInit {
   });
 
   imageUrl: string | ArrayBuffer | null = '';
+  files: File[] = [];
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {
     ServiceLocator.setHttpClient(http);
@@ -85,16 +87,63 @@ export class EventosEditComponent implements OnInit {
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
+      this.files = [file];
       const reader = new FileReader();
       reader.onload = () => {
         this.imageUrl = reader.result; 
-        this.formularioEventoUpdate.patchValue({
-          imagen: reader.result?.toString() || ''
+        this.upload().then((url: any) => {
+          this.formularioEventoUpdate.patchValue({
+            imagen: url
+          });
+        }).catch((error: any) => {
+          console.error('Error al subir la imagen:', error);
         });
       };
       reader.readAsDataURL(file);
     }
   }
+
+  /**
+   * Sube la imagen al CLoudnary
+   * @returns 
+   */
+
+  upload(): any {
+    return new Promise((resolve, reject) => {
+      if (this.files.length === 0) {
+        reject('No files to upload.');
+        return;
+      }
+
+      const file_data = this.files[0];
+      const form_data = new FormData();
+
+      form_data.append('file', file_data);
+      form_data.append('upload_preset', 'EventosYEspacios');
+      form_data.append('cloud_name', 'dknfkonvj');
+
+      this.http.post('https://api.cloudinary.com/v1_1/dknfkonvj/image/upload', form_data)
+        .subscribe({
+          next: (res: any) => {
+            console.log('Upload response:', res);
+            if (res.secure_url) {
+              resolve(res.secure_url);
+            } else {
+              console.log('URL not found');
+              reject('URL not found');
+            }
+          },
+          error: (err) => {
+            console.error('Error al subir la imagen:', err);
+            reject(err);
+          }
+        });
+    });
+  }
+
+  /**
+   * Envia los datos con todo ya formateado
+   */
 
   updateDatos() {
     if (this.formularioEventoUpdate.valid) {

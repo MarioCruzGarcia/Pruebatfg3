@@ -1,1 +1,70 @@
-<p>espacios-edit works!</p>
+<form [formGroup]="formularioEspacioUpdate" (ngSubmit)="updateDatos()">
+    <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" formControlName="nombre" class="form-control">
+        <div *ngIf="formularioEspacioUpdate.get('nombre')?.invalid && formularioEspacioUpdate.get('nombre')?.touched"
+            class="text-danger">
+            <div *ngIf="formularioEspacioUpdate.get('nombre')?.errors?.['required']">Nombre es requerido.</div>
+            <div *ngIf="formularioEspacioUpdate.get('nombre')?.errors?.['maxlength']">Nombre no puede tener más de 50 caracteres.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="localizacion">Localización</label>
+        <input type="text" formControlName="localizacion" class="form-control">
+        <div *ngIf="formularioEspacioUpdate.get('localizacion')?.invalid && formularioEspacioUpdate.get('localizacion')?.touched"
+            class="text-danger">
+            <div *ngIf="formularioEspacioUpdate.get('localizacion')?.errors?.['required']">Localización es requerida.</div>
+            <div *ngIf="formularioEspacioUpdate.get('localizacion')?.errors?.['maxlength']">Localización no puede tener más de 100 caracteres.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="aforo">Aforo</label>
+        <input type="number" formControlName="aforo" class="form-control">
+        <div *ngIf="formularioEspacioUpdate.get('aforo')?.invalid && formularioEspacioUpdate.get('aforo')?.touched"
+            class="text-danger">
+            <div *ngIf="formularioEspacioUpdate.get('aforo')?.errors?.['required']">Aforo es requerido.</div>
+            <div *ngIf="formularioEspacioUpdate.get('aforo')?.errors?.['min']">Aforo debe ser mayor o igual a 1.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="contacto">Contacto</label>
+        <input type="text" formControlName="contacto" class="form-control">
+        <div *ngIf="formularioEspacioUpdate.get('contacto')?.invalid && formularioEspacioUpdate.get('contacto')?.touched"
+            class="text-danger">
+            <div *ngIf="formularioEspacioUpdate.get('contacto')?.errors?.['required']">Contacto es requerido.</div>
+            <div *ngIf="formularioEspacioUpdate.get('contacto')?.errors?.['maxlength']">Contacto no puede tener más de 100 caracteres.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="estado_id">Estado</label>
+        <select formControlName="estado_id" class="form-control">
+            <option *ngFor="let estado of estados" [value]="estado.id">{{ estado.nombre }}</option>
+        </select>
+        <div *ngIf="formularioEspacioUpdate.get('estado_id')?.invalid && formularioEspacioUpdate.get('estado_id')?.touched"
+            class="text-danger">
+            <div *ngIf="formularioEspacioUpdate.get('estado_id')?.errors?.['required']">Estado es requerido.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="fecha">Fecha</label>
+        <input type="datetime-local" formControlName="fecha" class="form-control">
+        <div *ngIf="formularioEspacioUpdate.get('fecha')?.invalid && formularioEspacioUpdate.get('fecha')?.touched"
+            class="text-danger">
+            <div *ngIf="formularioEspacioUpdate.get('fecha')?.errors?.['required']">Fecha es requerida.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="imagen">Imagen</label>
+        <input type="file" class="form-control" id="espacio-imagen" name="espacio-imagen"
+            accept="image/png, image/jpg" (change)="onFileSelected($event)">
+        <div class="styleImage" id="preview">
+            <img *ngIf="imageUrl" [src]="imageUrl" alt="Vista previa de la imagen" class="img-thumbnail">
+        </div>
+        <div *ngIf="formularioEspacioUpdate.get('imagen')?.invalid && formularioEspacioUpdate.get('imagen')?.touched"
+            class="text-danger">
+            <div *ngIf="formularioEspacioUpdate.get('imagen')?.errors?.['required']">Imagen es requerida.</div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-dark btn-sm mt-4">Actualizar</button>
+</form>

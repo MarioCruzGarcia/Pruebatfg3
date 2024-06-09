@@ -50,8 +50,8 @@
                 [(ngModel)]="evento.descripcion"></textarea>
         </div>
         <div class="col-md-6">
-            <label for="espacio-imagen" class="form-label">Imagen:</label>
-            <input type="file" class="form-control" id="espacio-imagen" name="espacio-imagen" accept="image/png, image/jpeg" (change)="onFileSelected($event)">
+            <label for="evento-imagen" class="form-label">Imagen:</label>
+            <input type="file" class="form-control" id="evento-imagen" name="evento-imagen" accept="image/png, image/jpeg" (change)="onFileSelected($event)">
             <div class="styleImage" id="preview"></div>
         </div>
         <div class="col-md-4">
@@ -60,7 +60,7 @@
                 [(ngModel)]="evento.organizador_id" value="{{ cogerNombre() }}" disabled>
         </div>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary" (click)="submitEvento()" [disabled]="!isEventoFormValid()">Enviar</button>
+            <button type="submit" class="btn btn-primary" (click)="submitEvento()" [disabled]="isImageUploading || !isEventoFormValid()">Enviar</button>
         </div>
     </div>
 </form>
@@ -106,7 +106,7 @@
             <div class="styleImage" id="preview"></div>
         </div>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary" (click)="submitEspacio()" [disabled]="!isEspacioFormValid()">Enviar</button>
+            <button type="submit" class="btn btn-primary" (click)="submitEspacio()" [disabled]="isImageUploading || !isEspacioFormValid()">Enviar</button>
         </div>
     </div>
 </form>

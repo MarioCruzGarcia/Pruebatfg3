@@ -11,6 +11,13 @@ export class AuthGuard2 implements CanActivate {
 
     constructor(private router: Router) { }
 
+    /**
+     * En caso de existir token y ademas en caso de ser rol 1 te deja entrar
+     * @param route 
+     * @param state 
+     * @returns 
+     */
+
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         this.token = localStorage.getItem('token');
         const decoded: MyJwtPayload = jwtDecode(this.token);

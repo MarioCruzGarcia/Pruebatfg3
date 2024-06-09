@@ -22,10 +22,11 @@ export class CreacionComponent {
   token: any;
   nombre: any;
   id: any;
-  categorias : CategoriasEventoInterface[] = [];  
-  estados : EstadoInterface[] = [];
+  categorias: CategoriasEventoInterface[] = [];
+  estados: EstadoInterface[] = [];
 
   files: File[] = [];
+  isImageUploading: boolean = false;
 
   /**
    * Declaro las categorias que hay posibles y los estados, para que en el desplegable solo
@@ -33,10 +34,10 @@ export class CreacionComponent {
    */
 
   obtenerCategorias_evento() {
-    const httpClient = ServiceLocator.getHttpClient(); 
+    const httpClient = ServiceLocator.getHttpClient();
     httpClient.get('http://127.0.0.1:8000/api/categorias_evento')
       .subscribe((categorias_evento: any) => {
-        this.categorias = categorias_evento; 
+        this.categorias = categorias_evento;
         console.log(this.categorias);
       }, error => {
         console.error('Error al obtener categorias_evento:', error);
@@ -44,10 +45,10 @@ export class CreacionComponent {
   }
 
   obtenerEstados() {
-    const httpClient = ServiceLocator.getHttpClient(); 
+    const httpClient = ServiceLocator.getHttpClient();
     httpClient.get('http://127.0.0.1:8000/api/estado')
       .subscribe((estados: any) => {
-        this.estados = estados; 
+        this.estados = estados;
         console.log(this.categorias);
       }, error => {
         console.error('Error al obtener estados:', error);
@@ -126,10 +127,13 @@ export class CreacionComponent {
   //______________________________EVENTO__________________________________
   submitEvento(): void {
     if (this.files.length > 0) {
+      this.isImageUploading = true;
       this.upload().then((imageUrl: string) => {
         this.evento.imagen = imageUrl;
+        this.isImageUploading = false;
         this.sendEvento();
       }).catch((error: any) => {
+        this.isImageUploading = false;
         console.error('Error uploading image:', error);
       });
     } else {

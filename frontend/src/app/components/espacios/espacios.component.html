@@ -1,1 +1,111 @@
-<p>espacios works!</p>
+<button class="btn btn-primary mb-4" (click)="mostrarFormulario()">Agregar Espacio</button>
+
+<div *ngIf="mostrarForm">
+    <form [formGroup]="formularioEspacioCreate" (ngSubmit)="insertarDatos()">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" formControlName="nombre" class="form-control">
+            <div *ngIf="formularioEspacioCreate.get('nombre')?.invalid && formularioEspacioCreate.get('nombre')?.touched"
+                class="text-danger">
+                <div *ngIf="formularioEspacioCreate.get('nombre')?.errors?.['required']">Nombre es requerido.</div>
+                <div *ngIf="formularioEspacioCreate.get('nombre')?.errors?.['maxlength']">Nombre no puede tener más de
+                    50 caracteres.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="localizacion">Localización</label>
+            <input type="text" formControlName="localizacion" class="form-control">
+            <div *ngIf="formularioEspacioCreate.get('localizacion')?.invalid && formularioEspacioCreate.get('localizacion')?.touched"
+                class="text-danger">
+                <div *ngIf="formularioEspacioCreate.get('localizacion')?.errors?.['required']">Localización es
+                    requerida.</div>
+                <div *ngIf="formularioEspacioCreate.get('localizacion')?.errors?.['maxlength']">Localización no puede
+                    tener más de 100 caracteres.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="aforo">Aforo</label>
+            <input type="number" formControlName="aforo" class="form-control">
+            <div *ngIf="formularioEspacioCreate.get('aforo')?.invalid && formularioEspacioCreate.get('aforo')?.touched"
+                class="text-danger">
+                <div *ngIf="formularioEspacioCreate.get('aforo')?.errors?.['required']">Aforo es requerido.</div>
+                <div *ngIf="formularioEspacioCreate.get('aforo')?.errors?.['min']">Aforo debe ser mayor o igual a 1.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="contacto">Contacto</label>
+            <input type="email" formControlName="contacto" class="form-control" placeholder="contacto&#64;gmail.com">
+            <div *ngIf="formularioEspacioCreate.get('contacto')?.invalid && formularioEspacioCreate.get('contacto')?.touched"
+                class="text-danger">
+                <div *ngIf="formularioEspacioCreate.get('contacto')?.errors?.['required']">Contacto es requerido.</div>
+                <div *ngIf="formularioEspacioCreate.get('contacto')?.errors?.['maxlength']">Contacto no puede tener más
+                    de 100 caracteres.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="estado_id">Estado</label>
+            <select id="estado_id" class="form-select" name="estado_id" formControlName="estado_id">
+                <option *ngFor="let estado of estados" [value]="estado.id">{{ estado.nombre }}</option>
+            </select>
+            <div *ngIf="formularioEspacioCreate.get('estado_id')?.invalid && formularioEspacioCreate.get('estado_id')?.touched"
+                class="text-danger">
+                <div *ngIf="formularioEspacioCreate.get('estado_id')?.errors?.['required']">Estado es requerido.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="fecha">Fecha</label>
+            <input type="datetime-local" formControlName="fecha" class="form-control">
+            <div *ngIf="formularioEspacioCreate.get('fecha')?.invalid && formularioEspacioCreate.get('fecha')?.touched"
+                class="text-danger">
+                <div *ngIf="formularioEspacioCreate.get('fecha')?.errors?.['required']">Fecha es requerida.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="imagen">Imagen</label>
+            <input type="file" class="form-control" id="espacio-imagen" name="espacio-imagen"
+                accept="image/png, image/jpg" (change)="onFileSelected($event)">
+            <div class="styleImage" id="preview">
+                <img *ngIf="imageUrl" [src]="imageUrl" alt="Vista previa de la imagen" class="img-thumbnail">
+            </div>
+            <div *ngIf="formularioEspacioCreate.get('imagen')?.invalid && formularioEspacioCreate.get('imagen')?.touched"
+                class="text-danger">
+                <div *ngIf="formularioEspacioCreate.get('imagen')?.errors?.['required']">Imagen es requerida.</div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-dark btn-sm mt-4" [disabled]="isImageUploading">Crear</button>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Localización</th>
+            <th scope="col">Aforo</th>
+            <th scope="col">Contacto</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let espacio of espacios">
+            <td class="td">{{ espacio.id }}</td>
+            <td class="td">{{ espacio.nombre }}</td>
+            <td class="td">{{ espacio.localizacion }}</td>
+            <td class="td">{{ espacio.aforo }}</td>
+            <td class="td">{{ espacio.contacto }}</td>
+            <td class="td">{{ espacio.estado_id }}</td>
+            <td class="td">{{ espacio.fecha | date:'short' }}</td>
+            <td class="td"><img src="{{ espacio.imagen }}" class="foto"></td>
+            <td class="td">
+                <a class="btn btn-warning" href="editEspacio/{{ espacio.id }}"
+                    routerLinkActive="router-link-active">Editar</a>
+                <button class="btn btn-danger" (click)="deleteEspacio(espacio.id)">Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
