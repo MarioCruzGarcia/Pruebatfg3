@@ -5,10 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventosController;
 use App\Http\Controllers\EspaciosController;
-use App\Http\Controllers\ImagenesEventoController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\CategoriasEventoController;
 use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\ComentariosController;
+
 
 
 /*
@@ -70,3 +71,6 @@ Route::get('/comentarios', [ComentariosController::class, 'comentarios']);
 Route::get('/comentarios/evento/{eventoId}', [ComentariosController::class, 'comentariosPorEvento']);
 Route:: post ('/addComentario', [ComentariosController::class, 'addComentario']);
 Route:: delete('/deleteComentarios/{id}', [ComentariosController::class, 'deleteComentario']);
+
+//ENVIAR MAILS
+Route::post('sendEmail', [MailController::class, 'sendEmail']);

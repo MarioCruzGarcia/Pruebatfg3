@@ -4,6 +4,8 @@ import { ServiceLocator } from '../../service-locator';
 import { EventosInterface } from '../../_interfaces/eventos.interface';
 import { EventService } from '../../services/event.service';
 import { Router } from '@angular/router';
+import { MyJwtPayload } from '../../_interfaces/MyJwtPayload';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-events',
@@ -17,12 +19,15 @@ export class EventsComponent implements OnInit {
   }
 
   eventos: EventosInterface[] = [];
+  token: any;
+  evento: any;
 
   ngOnInit() {
     this.obtenerEventos();
   }
 
   irAlCalendario(evento: any) {
+    this.enviarMail(evento);
     this.eventService.saveEvent(evento);
     this.router.navigate(['/calendario']);
   }
@@ -43,5 +48,44 @@ export class EventsComponent implements OnInit {
         console.error('Error al obtener user:', error);
       });
   }
+
+  enviarMail(evento: any) {
+    const emailData = {
+      to: this.cogerEmail(),
+      subject: 'Reserva Evento',
+      text: evento.nombre + ',\n\n' +
+        'Se ha confirmado la reserva de plaza en ' + evento.localizacion + ' para el evento programado para el día ' + evento.fecha_hora + '.\n\n' +
+        '¡Esperamos verte allí!'
+    };
+
+    this.http.post('http://localhost:8000/api/sendEmail', emailData)
+      .subscribe(
+        (response: any) => {
+          console.log('Correo enviado correctamente', response);
+        },
+        (error: any) => {
+          console.error('Error al enviar el correo:', error);
+        }
+      );
+  }
+
+  cogerEmail(): String {
+    this.token = localStorage.getItem('token');
+    const decoded: MyJwtPayload = jwtDecode(this.token);
+
+    return decoded.email;
+
+  }
+
+  existeToken() {
+    this.token = localStorage.getItem('token');
+    if (this.token) {
+      return true;
+    }else {
+      return false;
+    }
+
+  }
+
 
 }

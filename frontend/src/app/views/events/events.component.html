@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ evento.nombre }}</h5>
                     <p class="card-text">{{ evento.localizacion }}</p>
-                    <button class="btn btn-warning custom-button" (click)="irAlCalendario(evento)">Asistir</button>
+                    <button class="btn btn-warning custom-button" *ngIf="existeToken()" (click)="irAlCalendario(evento)">Asistir</button>
                 </div>
             </div>
         </div>

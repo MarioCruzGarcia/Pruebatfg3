@@ -26,7 +26,8 @@
     "@fullcalendar/interaction": "^6.1.13",
     "@ionic/angular": "^8.2.0",
     "jwt-decode": "^4.0.0",
-    "ngx-toastr": "^15.2.2"
+    "ngx-toastr": "^15.2.2",
+    "nodemailer": "^6.9.13"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.3.3",
